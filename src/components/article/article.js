@@ -4,7 +4,7 @@ import './article.less'
 // You can read about ES6 modules here: https://exploringjs.com/es6/ch_modules.html#sec_basics-of-es6-modules
 const data = [
   {
-    title: 'BloomTech Students: "We\'re the best!"',
+    title: 'BloomTech Students: "We are the best!"',
     date: 'Nov 5th, 2018',
     firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
         moff wicket tatooine luke.Solo wampa wampa calrissian yoda moff.Darth grievous darth gonk darth hutt.Darth baba skywalker
@@ -115,3 +115,43 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+ 
+
+function articleMaker(articleObj) {
+const articleWrapper = document.createElement('div');
+const articleTitle = document.createElement('h2');
+const articleDate = document.createElement('p');
+const articleParagraphOne = document.createElement('p');
+const articleParagraphTwo = document.createElement('p');
+const articleParagraphThree = document.createElement('p');
+const expandButton = document.createElement('span');
+
+articleWrapper.classList.add('article');
+articleDate.classList.add('date');
+expandButton.classList.add('expandButton');
+
+articleWrapper.appendChild(articleTitle);
+articleWrapper.appendChild(articleDate);
+articleWrapper.appendChild(articleParagraphOne);
+articleWrapper.appendChild(articleParagraphTwo);
+articleWrapper.appendChild(articleParagraphThree);
+articleWrapper.appendChild(expandButton);
+
+//console.log(articleWrapper);
+articleTitle.textContent = articleObj.title;
+articleDate.textContent = articleObj.date;
+articleParagraphOne.textContent = articleObj.firstParagraph;
+articleParagraphTwo.textContent = articleObj.secondParagraph;
+articleParagraphThree.textContent = articleObj.thirdParagraph;
+expandButton.textContent = "+";
+
+expandButton.addEventListener('click', () => {
+  articleWrapper.classList.toggle('article-open');
+})
+return articleWrapper;
+
+}
+data.forEach(article  => {
+document.querySelector("div.articles").appendChild(articleMaker(article));
+})
